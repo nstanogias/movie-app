@@ -14,6 +14,7 @@ import {
   Avatar,
 } from "@mui/material";
 import { useMovies } from "../hooks/useMovies";
+import { useDebounce } from "../hooks/useDebounce";
 
 const PAGE_SIZE = 5;
 
@@ -21,10 +22,12 @@ export default function MovieTable() {
   const [page, setPage] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
 
+  const debouncedSearchQuery = useDebounce(searchQuery, 500);
+
   const { data, error, isLoading } = useMovies(
     page * PAGE_SIZE,
     PAGE_SIZE,
-    searchQuery
+    debouncedSearchQuery
   );
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
