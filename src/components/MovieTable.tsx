@@ -51,63 +51,67 @@ export default function MovieTable() {
         onChange={handleSearch}
       />
 
-      {isLoading ? (
-        <div style={{ textAlign: "center", padding: "20px" }}>
-          <CircularProgress />
-        </div>
-      ) : error ? (
-        <Typography color="error" align="center">
-          Error: {error.message}
-        </Typography>
-      ) : (
+      <div className="min-h-[500px]">
         <>
-          <TableContainer component={Paper}>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>
-                    <b>Image</b>
-                  </TableCell>
-                  <TableCell>
-                    <b>Title</b>
-                  </TableCell>
-                  <TableCell>
-                    <b>Description</b>
-                  </TableCell>
-                  <TableCell>
-                    <b>Rating</b>
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {data?.items.map((movie) => (
-                  <TableRow key={movie.id}>
-                    <TableCell>
-                      <Avatar
-                        src={movie.image_url}
-                        alt={movie.title}
-                        sx={{ width: 60, height: 60 }}
-                      />
-                    </TableCell>
-                    <TableCell>{movie.title}</TableCell>
-                    <TableCell>{movie.description}</TableCell>
-                    <TableCell>{movie.rating}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+          {isLoading ? (
+            <div style={{ textAlign: "center", padding: "20px" }}>
+              <CircularProgress />
+            </div>
+          ) : error ? (
+            <Typography color="error" align="center">
+              Error: {error.message}
+            </Typography>
+          ) : (
+            <>
+              <TableContainer component={Paper}>
+                <Table>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>
+                        <b>Image</b>
+                      </TableCell>
+                      <TableCell>
+                        <b>Title</b>
+                      </TableCell>
+                      <TableCell>
+                        <b>Description</b>
+                      </TableCell>
+                      <TableCell>
+                        <b>Rating</b>
+                      </TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {data?.items.map((movie) => (
+                      <TableRow key={movie.id}>
+                        <TableCell>
+                          <Avatar
+                            src={movie.image_url}
+                            alt={movie.title}
+                            sx={{ width: 60, height: 60 }}
+                          />
+                        </TableCell>
+                        <TableCell>{movie.title}</TableCell>
+                        <TableCell>{movie.description}</TableCell>
+                        <TableCell>{movie.rating}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
 
-          <TablePagination
-            component="div"
-            count={data?.total ?? 0}
-            page={page}
-            onPageChange={handlePageChange}
-            rowsPerPage={PAGE_SIZE}
-            rowsPerPageOptions={[PAGE_SIZE]}
-          />
+              <TablePagination
+                component="div"
+                count={data?.total ?? 0}
+                page={page}
+                onPageChange={handlePageChange}
+                rowsPerPage={PAGE_SIZE}
+                rowsPerPageOptions={[PAGE_SIZE]}
+              />
+            </>
+          )}
         </>
-      )}
+      </div>
     </div>
   );
 }
