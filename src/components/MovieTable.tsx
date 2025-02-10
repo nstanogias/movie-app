@@ -40,24 +40,26 @@ export default function MovieTable() {
   };
 
   return (
-    <div style={{ maxWidth: "800px", margin: "auto", padding: "20px" }}>
-      <Typography variant="h4" className="mb-4">
-        Movies
-      </Typography>
+    <div className="flex flex-col items-center p-[20px] m-auto">
+      <div className="flex flex-col w-[400px] text-center">
+        <Typography variant="h4" className="mb-4">
+          Movies
+        </Typography>
 
-      <TextField
-        label="Search..."
-        variant="outlined"
-        fullWidth
-        margin="normal"
-        value={searchQuery}
-        onChange={handleSearch}
-      />
+        <TextField
+          label="Search..."
+          variant="outlined"
+          fullWidth
+          margin="normal"
+          value={searchQuery}
+          onChange={handleSearch}
+        />
+      </div>
 
-      <div className="min-h-[500px]">
+      <div className="min-h-[500px] max-w-[800px]">
         <>
           {isLoading ? (
-            <div style={{ textAlign: "center", padding: "20px" }}>
+            <div className="text-center p-[20px]">
               <CircularProgress />
             </div>
           ) : error ? (
